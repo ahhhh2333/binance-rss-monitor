@@ -1,0 +1,21 @@
+name: RSS Monitor
+on:
+  schedule:
+    - cron: '*/15 4-14 * * *'   # UTC 04:00-14:59 ≈ 北京 12:00-22:59
+  workflow_dispatch:
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with: { python-version: '3.x' }
+
+    - name: Install deps
+      run: pip install -r requirements.txt
+
+    - name: Run RSS monitor
+      env:
+        WECHAT_WEBHOOK_URL: ${{ secrets.WECHAT_WEBHOOK_URL }}
+      run: python binance_rss_monitor.py
