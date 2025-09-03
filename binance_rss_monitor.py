@@ -10,7 +10,7 @@ import hashlib
 import requests
 import feedparser
 
-RSS_URL     = "https://nitter.net/binancezh/rss"
+RSS_URL     = "https://rsshub.app/twitter/user/binancezh"
 WEBHOOK_URL = os.getenv("WECHAT_WEBHOOK_URL")
 SEEN_FILE   = "seen.txt"
 
